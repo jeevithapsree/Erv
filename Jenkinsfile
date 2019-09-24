@@ -11,26 +11,26 @@ node {
     }
     
   
-    stage ('checkout') {
+    stage ('Terraform-checkout') {
         //git credentialsId: '7c01b196-3329-4366-94a8-3627af872853', url: 'git@github.com:hari212008/terrafrm.git'
         git branch: 'develop', credentialsId: '7c01b196-3329-4366-94a8-3627af872853', poll: false, url: 'github.com:hari212008/terrafrm.git'
         }
-     stage ('Initialise'){
+     stage ('Notebook-Initialise'){
     dir ('erv/'){
         sh '''terraform --version
             pwd'''
         sh 'terraform init'
             }
         }
-    stage ('churn-Plan'){
+    stage ('Terraform-Plan'){
     dir ('erv/') {
       sh 'terraform get --update'
       sh 'terraform plan '
            
     }
-    stage ('churn-Apply'){
+    stage ('ERV-Apply'){
       dir('erv/') {
-      sh 'terraform destroy -auto-approve'
+      sh 'terraform Apply -auto-approve'
       }
     }
     }
