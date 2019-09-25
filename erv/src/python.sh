@@ -1,0 +1,1 @@
+python model-training-job.py --algo_img='ecr' --role='arn:aws:iam::421089506438:role/service-role/AmazonSageMaker-ExecutionRole-20190709T125386' --input_path='s3://mafsagemaker-us-east-1/erv/input' --output_path='s3://mafsagemaker-us-east-1/erv/output'
