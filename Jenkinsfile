@@ -3,8 +3,9 @@ node {
     properties([disableConcurrentBuilds(), parameters([string(defaultValue: 'ecr', description: '', name: 'image_name', trim: true)])])
     
      stage ('checkout') {
-        git credentialsId: '7c01b196-3329-4366-94a8-3627af872853', url: 'git@github.com:hari212008/Erv.git'
-    }
+      //  git credentialsId: '7c01b196-3329-4366-94a8-3627af872853', url: 'git@github.com:hari212008/Erv.git'
+	git branch: 'develop', credentialsId: '7c01b196-3329-4366-94a8-3627af872853', url: 'https://github.com/hari212008/Erv.git'   
+ }
     
     stage ('Copying EDA&Data processing scripts') {
         sh 'sudo cp -R erv/ /jenkins/terraform/modules/usecase-setup/source'               
@@ -30,7 +31,7 @@ node {
     }
     stage ('ERV-Apply'){
       dir('erv/') {
-      sh 'terraform apply -auto-approve'
+      sh 'terraform destroy -auto-approve'
       }
     }
     }
