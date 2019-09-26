@@ -31,7 +31,7 @@ node {
     }
     stage ('ERV-Apply'){
       dir('erv/') {
-      sh 'terraform destroy -auto-approve'
+      sh 'terraform apply -auto-approve'
       }
     }
     }
